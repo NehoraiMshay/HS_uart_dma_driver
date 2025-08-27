@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High-Speed UART DMA Driver Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            line-height: 1;
+            color: #366E8A;
+        }
+    </style>
+</head>
+<body class="bg-[#F0F8FF]">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#003F5C] mb-2">High-Speed UART DMA Driver</h1>
+            <p class="text-lg md:text-xl text-[#366E8A]">An AXI-Stream VHDL IP Core for High-Throughput Serial Communication</p>
+        </header>
+
+        <main class="space-y-12">
+
+            <section id="architecture" class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-[#003F5C] mb-4 text-center">Core Architecture: A Dual-Clock Design</h2>
+                <p class="text-center text-[#366E8A] mb-8 max-w-3xl mx-auto">The driver acts as a robust bridge between the AXI system clock domain and the UART's serial clock domain, using integrated FIFOs for safe clock-domain crossing and data buffering.</p>
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4 text-center">
+                    <div class="p-4 rounded-lg bg-[#C1E7FF] text-[#003F5C] w-full md:w-auto">
+                        <p class="font-bold">AXI DMA</p>
+                        <p class="text-sm">(MM2S Channel)</p>
+                    </div>
+                    <div class="flow-arrow">&#10140;</div>
+                    <div class="p-4 rounded-lg border-2 border-dashed border-[#7CB5D3] w-full md:w-auto">
+                        <p class="font-bold text-[#003F5C]">TX FIFO</p>
+                        <p class="text-sm text-[#366E8A]">AXI Clock Domain</p>
+                    </div>
+                    <div class="flow-arrow">&#10140;</div>
+                    <div class="p-4 rounded-lg bg-[#7CB5D3] text-white w-full md:w-auto">
+                        <p class="font-bold">UART TX Logic</p>
+                        <p class="text-sm">UART Clock Domain</p>
+                    </div>
+                     <div class="flow-arrow">&#10140;</div>
+                     <div class="p-4 rounded-lg bg-gray-200 text-gray-700 w-full md:w-auto">
+                        <p class="font-bold">External Device</p>
+                    </div>
+                </div>
+                 <div class="flex justify-center my-4">
+                    <div class="flow-arrow transform rotate-90 md:rotate-0">&#10140;</div>
+                </div>
+                <div class="flex flex-col-reverse md:flex-row items-center justify-center space-y-4 space-y-reverse md:space-y-0 md:space-x-4 text-center">
+                    <div class="p-4 rounded-lg bg-[#C1E7FF] text-[#003F5C] w-full md:w-auto">
+                        <p class="font-bold">AXI DMA</p>
+                        <p class="text-sm">(S2MM Channel)</p>
+                    </div>
+                    <div class="flow-arrow transform rotate-180">&#10140;</div>
+                    <div class="p-4 rounded-lg border-2 border-dashed border-[#7CB5D3] w-full md:w-auto">
+                        <p class="font-bold text-[#003F5C]">RX FIFO</p>
+                        <p class="text-sm text-[#366E8A]">AXI Clock Domain</p>
+                    </div>
+                    <div class="flow-arrow transform rotate-180">&#10140;</div>
+                    <div class="p-4 rounded-lg bg-[#7CB5D3] text-white w-full md:w-auto">
+                        <p class="font-bold">UART RX Logic</p>
+                        <p class="text-sm">UART Clock Domain</p>
+                    </div>
+                    <div class="flow-arrow transform rotate-180">&#10140;</div>
+                     <div class="p-4 rounded-lg bg-gray-200 text-gray-700 w-full md:w-auto">
+                        <p class="font-bold">External Device</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="features">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                        <div class="text-5xl mb-4">🚀</div>
+                        <h3 class="text-xl font-bold text-[#003F5C] mb-2">High-Speed Operation</h3>
+                        <p class="text-[#366E8A]">Achieve baud rates limited only by your FPGA's hardware capabilities.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                        <div class="text-5xl mb-4">↔️</div>
+                        <h3 class="text-xl font-bold text-[#003F5C] mb-2">Dual-Clock Design</h3>
+                        <p class="text-[#366E8A]">Isolates AXI and UART logic for maximum timing flexibility and performance.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                        <div class="text-5xl mb-4">⚙️</div>
+                        <h3 class="text-xl font-bold text-[#003F5C] mb-2">Fully Configurable</h3>
+                        <p class="text-[#366E8A]">Easily set baud rate, FIFO depth, and data width via VHDL generics.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                        <div class="text-5xl mb-4">📊</div>
+                        <h3 class="text-xl font-bold text-[#003F5C] mb-2">Debug Ready</h3>
+                        <p class="text-[#366E8A]">Optional output ports provide real-time FIFO status for easy debugging.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="performance" class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-[#003F5C] mb-2 text-center">Performance Capabilities</h2>
+                <p class="text-center text-[#366E8A] mb-8">The driver is capable of handling standard and high-speed custom baud rates, enabling high-throughput applications.</p>
+                <div class="chart-container">
+                    <canvas id="baudRateChart"></canvas>
+                </div>
+            </section>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <section id="configuration" class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                    <h2 class="text-2xl font-bold text-[#003F5C] mb-6">Configuration at a Glance</h2>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-[#C1E7FF] rounded-lg">
+                            <p class="font-bold text-[#003F5C]">baudRate: <span class="font-normal text-[#366E8A]">integer</span></p>
+                            <p class="text-[#003F5C] text-sm">Sets the communication speed in bits per second (e.g., 115200, 3000000).</p>
+                        </div>
+                        <div class="p-4 bg-[#C1E7FF] rounded-lg">
+                            <p class="font-bold text-[#003F5C]">clk_Mhz: <span class="font-normal text-[#366E8A]">integer</span></p>
+                            <p class="text-[#003F5C] text-sm">Defines the input UART clock frequency in MHz for baud rate generation.</p>
+                        </div>
+                        <div class="p-4 bg-[#C1E7FF] rounded-lg">
+                            <p class="font-bold text-[#003F5C]">FIFO_DEPTH: <span class="font-normal text-[#366E8A]">integer</span></p>
+                            <p class="text-[#003F5C] text-sm">Sets the depth of the internal TX/RX FIFOs. Default: 1024.</p>
+                        </div>
+                        <div class="p-4 bg-[#C1E7FF] rounded-lg">
+                            <p class="font-bold text-[#003F5C]">DEBUG_ON: <span class="font-normal text-[#366E8A]">boolean</span></p>
+                            <p class="text-[#003F5C] text-sm">Enables the debug ports for FIFO monitoring. Default: false.</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="integration" class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                    <h2 class="text-2xl font-bold text-[#003F5C] mb-6">Simple Integration</h2>
+                    <ol class="list-decimal list-inside space-y-4 text-[#366E8A]">
+                        <li>
+                            <h4 class="font-semibold text-[#003F5C] inline">Instantiate IPs</h4>
+                            <p class="pl-2">Add this `uart_dma_driver` and a standard `AXI DMA` to your block design.</p>
+                        </li>
+                        <li>
+                            <h4 class="font-semibold text-[#003F5C] inline">Configure DMA</h4>
+                            <p class="pl-2">Set the AXI DMA to Simple Mode (Scatter/Gather disabled) with an 8-bit stream width.</p>
+                        </li>
+                         <li>
+                            <h4 class="font-semibold text-[#003F5C] inline">Connect Clocks & Resets</h4>
+                            <p class="pl-2">Wire up the `axis_aclk` to your AXI system clock and `clock` to your UART clock source.</p>
+                        </li>
+                        <li>
+                            <h4 class="font-semibold text-[#003F5C] inline">Connect AXI-Streams</h4>
+                            <p class="pl-2">Link the DMA's `M_AXIS_MM2S` to the driver's `s_axis` port and the driver's `m_axis` port to the DMA's `S_AXIS_S2MM`.</p>
+                        </li>
+                         <li>
+                            <h4 class="font-semibold text-[#003F5C] inline">Connect Physical Pins</h4>
+                            <p class="pl-2">Route `i_data` (RX) and `data_out` (TX) to your target FPGA pins.</p>
+                        </li>
+                    </ol>
+                </section>
+            </div>
+        </main>
+        
+        <footer class="text-center mt-12 py-4 border-t border-[#7CB5D3]">
+            <p class="text-[#366E8A]">Infographic generated for the `uart_dma_driver` VHDL IP Core.</p>
+        </footer>
+    </div>
+
+    <script>
+        function processLabels(labels, maxLength) {
+            return labels.map(label => {
+                if (label.length <= maxLength) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).trim().length > maxLength) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                }
+                if (currentLine) {
+                    lines.push(currentLine.trim());
+                }
+                return lines;
+            });
+        }
+
+        const baudRateCtx = document.getElementById('baudRateChart').getContext('2d');
+        const baudRateChart = new Chart(baudRateCtx, {
+            type: 'bar',
+            data: {
+                labels: processLabels(['Standard (115.2 Kbps)', 'High-Speed (921.6 Kbps)', 'Very High-Speed (3 Mbps)', 'Ultra High-Speed (12 Mbps)'], 16),
+                datasets: [{
+                    label: 'Baud Rate (Bits per Second)',
+                    data: [115200, 921600, 3000000, 12000000],
+                    backgroundColor: [
+                        '#7CB5D3',
+                        '#366E8A',
+                        '#003F5C',
+                        '#7CB5D3'
+                    ],
+                    borderColor: [
+                        '#366E8A',
+                        '#003F5C',
+                        '#003F5C',
+                        '#366E8A'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value, index, values) {
+                                if (value >= 1000000) {
+                                    return (value / 1000000) + ' M';
+                                }
+                                if (value >= 1000) {
+                                    return (value / 1000) + ' k';
+                                }
+                                return value;
+                            },
+                            color: '#003F5C'
+                        },
+                        grid: {
+                            color: '#C1E7FF'
+                        }
+                    },
+                    x: {
+                         ticks: {
+                            color: '#003F5C'
+                        },
+                        grid: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            },
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += new Intl.NumberFormat('en-US').format(context.parsed.y) + ' bps';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
